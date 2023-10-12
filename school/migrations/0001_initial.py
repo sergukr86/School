@@ -73,15 +73,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "subject",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT, to="school.subject"
-                    ),
+                    models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="school.subject"),
                 ),
                 (
                     "teacher",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT, to="school.teacher"
-                    ),
+                    models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="school.teacher"),
                 ),
             ],
         ),
@@ -104,15 +100,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "group",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT, to="school.group"
-                    ),
+                    models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="school.group"),
                 ),
                 (
                     "teacher",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.PROTECT, to="school.teacher"
-                    ),
+                    models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="school.teacher"),
                 ),
             ],
         ),
@@ -137,8 +129,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name="group",
             name="teacher",
-            field=models.ForeignKey(
-                on_delete=django.db.models.deletion.PROTECT, to="school.teacher"
-            ),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="school.teacher"),
         ),
     ]

@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -8,9 +9,10 @@ class Teacher(models.Model):
     last_name = models.CharField(max_length=50)
     fathers_name = models.CharField(max_length=50)
     birth_date = models.DateTimeField()
+    photo = models.ImageField()
 
     def __str__(self):
-        return f'ID: {self.pk} {self.first_name}'
+        return f"ID: {self.pk} {self.first_name}"
 
 
 class Subject(models.Model):
@@ -34,7 +36,8 @@ class Group(models.Model):
 class Student(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    admission_year = models.IntegerField()
+    phone_number = models.CharField(max_length=20, null=True)
+    admission_year = models.CharField(max_length=4)
 
     def __str__(self):
         return f"ID: {self.pk} {self.first_name}"
@@ -46,3 +49,9 @@ class StudentsGroup(models.Model):
 
     def __str__(self):
         return f"Group: {self.group} {self.student}"
+
+
+class Parameters(models.Model):
+    request_path = models.CharField(max_length=50)
+    request_method = models.CharField(max_length=50)
+    execution_time = models.FloatField(max_length=20)

@@ -5,20 +5,23 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('school', '0007_remove_studentsgroup_group_studentsgroup_student_and_more'),
+        ("school", "0007_remove_studentsgroup_group_studentsgroup_student_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='studentsgroup',
-            name='teacher',
+            model_name="studentsgroup",
+            name="teacher",
         ),
         migrations.AddField(
-            model_name='studentsgroup',
-            name='group',
-            field=models.ForeignKey(default='1', on_delete=django.db.models.deletion.CASCADE, to='school.group'),
+            model_name="studentsgroup",
+            name="group",
+            field=models.ForeignKey(
+                default="1",
+                on_delete=django.db.models.deletion.CASCADE,
+                to="school.group",
+            ),
             preserve_default=False,
         ),
     ]

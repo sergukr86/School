@@ -1,33 +1,45 @@
-from django.forms import ModelForm
+import phonenumbers
 
-from .models import Teacher, Group, Subject, Student, StudentsGroup
+from django import forms
+
+from school.models import Teacher, Group, Subject, Student, StudentsGroup
 
 
-class TeacherForm(ModelForm):
+class TeacherForm(forms.ModelForm):
     class Meta:
         model = Teacher
-        fields = ["first_name", "last_name", "fathers_name", "birth_date"]
+        fields = ["first_name", "last_name", "fathers_name", "birth_date", "photo"]
 
 
-class GroupForm(ModelForm):
+class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ["group_name", "teacher"]
 
 
-class SubjectForm(ModelForm):
+class SubjectForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = ["name", "description", "score", "teacher"]
 
 
-class StudentForm(ModelForm):
+class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ["first_name", "last_name", "admission_year"]
+        fields = ["first_name", "last_name", "phone_number", "admission_year"]
+
+    def clean_phone(self):
+        phone = self.cleaned_data["phone_number"]
+        if not phone:
+            raise forms.ValidationError("Phone cannot be empty.")
+        try:
+            parsed = phonenumbers.parse(phone, None)
+        except phonenumbers.NumberParseException as e:
+            raise forms.ValidationError(e.args[0])
+        return phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
 
 
-class StudentsGroupForm(ModelForm):
+class StudentsGroupForm(forms.ModelForm):
     class Meta:
         model = StudentsGroup
         fields = ["group", "student"]

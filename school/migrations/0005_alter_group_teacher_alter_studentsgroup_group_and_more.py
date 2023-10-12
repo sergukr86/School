@@ -5,40 +5,39 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('school', '0004_alter_student_admission_year'),
+        ("school", "0004_alter_student_admission_year"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='group',
-            name='teacher',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.teacher'),
+            model_name="group",
+            name="teacher",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.teacher"),
         ),
         migrations.AlterField(
-            model_name='studentsgroup',
-            name='group',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.group'),
+            model_name="studentsgroup",
+            name="group",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.group"),
         ),
         migrations.AlterField(
-            model_name='studentsgroup',
-            name='teacher',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.teacher'),
+            model_name="studentsgroup",
+            name="teacher",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.teacher"),
         ),
         migrations.AlterField(
-            model_name='subject',
-            name='teacher',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.teacher'),
+            model_name="subject",
+            name="teacher",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.teacher"),
         ),
         migrations.AlterField(
-            model_name='teachersubject',
-            name='subject',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.subject'),
+            model_name="teachersubject",
+            name="subject",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.subject"),
         ),
         migrations.AlterField(
-            model_name='teachersubject',
-            name='teacher',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='school.teacher'),
+            model_name="teachersubject",
+            name="teacher",
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="school.teacher"),
         ),
     ]
