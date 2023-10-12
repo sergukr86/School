@@ -1,0 +1,7 @@
+{{ form.non_field_errors }}
+<p2>Are you sure, you want do delete Teacher?</p2>
+<form action="" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Delete">
+</form>

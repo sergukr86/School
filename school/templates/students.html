@@ -1,0 +1,5 @@
+{% for stud in student %}
+    <a href="{% url "student_edit" stud.id %}">ID {{ stud.id }}</a>
+    Name: {{stud.first_name}} {{ stud.last_name }}
+    <a href="{% url "student_delete" stud.id %}"> Delete {{ stud.first_name }}</a><br>
+{% endfor %}
