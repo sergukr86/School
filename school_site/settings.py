@@ -48,10 +48,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-<<<<<<< HEAD
     "school.middleware.LogMiddleware",
-=======
->>>>>>> 6433bbe0db5dd276c2b890d48ccd35e5e7363c21
 ]
 
 ROOT_URLCONF = "school_site.urls"
