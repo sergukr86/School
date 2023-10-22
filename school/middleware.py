@@ -24,6 +24,10 @@ class LogMiddleware:
             for i in data:
                 file.write(f"{str(i)} ")
 
-        params = Parameters(request_method=request.method, request_path=request.path, execution_time=execution_time)
+        params = Parameters(
+            request_method=request.method,
+            request_path=request.path,
+            execution_time=execution_time,
+        )
         params.save()
         return response
