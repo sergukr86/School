@@ -24,19 +24,23 @@ class SubjectForm(forms.ModelForm):
 
 
 class StudentForm(forms.ModelForm):
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data["phone_number"]
+        if not phone_number:
+            raise forms.ValidationError("Phone cannot be empty")
+        try:
+            parsed_num = phonenumbers.parse(phone_number, None)
+            if not phonenumbers.is_valid_number(parsed_num):
+                raise forms.ValidationError("Wrong number")
+        except phonenumbers.NumberParseException as error:
+            raise forms.ValidationError(error.args[0])
+        return phonenumbers.format_number(
+            parsed_num, phonenumbers.PhoneNumberFormat.INTERNATIONAL
+        )
+
     class Meta:
         model = Student
         fields = ["first_name", "last_name", "phone_number", "admission_year"]
-
-    def clean_phone(self):
-        phone = self.cleaned_data["phone_number"]
-        if not phone:
-            raise forms.ValidationError("Phone cannot be empty.")
-        try:
-            parsed = phonenumbers.parse(phone, None)
-        except phonenumbers.NumberParseException as e:
-            raise forms.ValidationError(e.args[0])
-        return phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.INTERNATIONAL)
 
 
 class StudentsGroupForm(forms.ModelForm):
