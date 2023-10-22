@@ -4,7 +4,6 @@ from django.urls import reverse
 
 from .forms import SubjectForm, TeacherForm, StudentForm, GroupForm, StudentsGroupForm
 
-# Create your views here.
 from .models import Subject, Teacher, Student, Group, StudentsGroup
 
 
@@ -81,7 +80,7 @@ def student_form(request):
         form.save()
         return redirect(reverse("student_edit", args=[form.instance.pk]))
 
-    return render(request, "student_form", {"form": form})
+    return render(request, "student_form.html", {"form": form})
 
 
 def student_edit(request, pk):
@@ -94,7 +93,7 @@ def student_edit(request, pk):
         form.save()
         return redirect("students")
 
-    return render(request, "student_edit", {"form": form})
+    return render(request, "student_edit.html", {"form": form})
 
 
 def students(request):
@@ -132,13 +131,13 @@ def groups(request):
 def add_student(request):
     if request.method != "POST":
         form = StudentsGroupForm()
-        return render(request, "studentsgroup_form.html", {"form": form})
+        return render(request, "students-group_form.html", {"form": form})
     form = StudentsGroupForm(request.POST)
     if form.is_valid():
         form.save()
         return redirect(reverse("stud_groups"))
 
-    return render(request, "studentgroup_form.html", {"form": form})
+    return render(request, "students-group_form.html", {"form": form})
 
 
 def stud_groups(request):
